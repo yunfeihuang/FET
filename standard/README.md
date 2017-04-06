@@ -1,0 +1,1 @@
+[基本规范](http://alloyteam.github.io/CodeGuide/)
