@@ -17,22 +17,63 @@
 
 ## 命名规范
 ### 文件及目录
-- 目录：aaa_bbb，采用linux命名规范，因为window不区分大小写。
-- js文件:aaaBbb，驼峰命名法。
-- 组件文件（特别是单文件组件）：AaaBbb,大写的驼峰命名法。
+- 目录结构：js目前是按照一级、二级页面划分的
+- 目录：aaa_bbb，采用linux命名规范，因为window不区分大小写
+- js文件:aaaBbb，驼峰命名法
+- 组件文件（特别是单文件组件）：AaaBbb,大写的驼峰命名法
 - css：aaa_bbb.css，aaa_bbb.scss，aaa_bbb.less
+- **争议** ：耳机页面的样式文件放在css下面还是就近放在二级页面的目录下。
 
 ### 变量
 - class：aaa-bbb
 - 常量：AAA_BBB
+- 函数：aaaBbb(){}
+- 类名 class AaaBbb
+- 变量声明，let与const。
+    - 尽量使用const。
+    - 只有在变量值会改变的情况下使用let声明。
 
 ### action，store，路由等
-- 路由：目录结构+下划线。如/order/indent，OrderIndent。
-- store：
-
+- 路由：和目录结构统一。
+- store：目录结构+下划线如/order/indent，order_indent。
+- action的方法名须有该模块的前缀。
+- actionType的常量须有该模块的前缀。
+- reduers的名字须有该模块的前缀。
+- 以上如果太长则使用缩写，如服务时间管理Service_Mission_Manage缩写是SMM。
+- react-route的path用小写，_连接单词<Routepath="service_mission_manage">。
 
 > Tips：3是一个很奇妙的数字，目录结构，对象设计，路由层次等，尽量不要超过3层，保证工程的**扁平化**
 
+## 数据处理
+### 使用moment.js进行日期处理
+```
+moment("12-25-1995", "MM-DD-YYYY");
+moment("2010-10-20 4:30", "YYYY-MM-DD HH:mm");
+moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+```
+
+###价格处理(后面可能上)
+使用big.js进行价格处理
+```
+0.1 + 0.2                  // 0.30000000000000004
+x = new Big(0.1)
+y = x.plus(0.2)            // '0.3'
+Big(0.7).plus(x).plus(y)   // '1.1'
+```
+
+### 分支管理与命名（暂定）
+在后台不明确的情况下，前端请严格遵循Git Flow工作流规范。
+![image](http://upload-images.jianshu.io/upload_images/1416338-2b5d1a64e15419d7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+- feature分支：feature+需求号，如`feature1916`
+
 ## 编码规范
-[JavaScript编码规范](https://github.com/77ircloud/FET/wiki/JavaScript%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83)
-[React JSX 编码规范](https://github.com/77ircloud/FET/wiki/React-JSX-%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83)
+基于以下编码规范定制。
+- [JavaScript编码规范](https://github.com/77ircloud/FET/wiki/JavaScript%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83)
+- [React JSX 编码规范](https://github.com/77ircloud/FET/wiki/React-JSX-%E7%BC%96%E7%A0%81%E8%A7%84%E8%8C%83)
+
+## 编码规范校验
+暂时是主要基于下面两个定制的，后期将独立成单独的包。
+
+- React校验[eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)
+- css/scss校验[stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
