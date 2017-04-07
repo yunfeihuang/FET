@@ -53,7 +53,7 @@ moment("2010-10-20 4:30", "YYYY-MM-DD HH:mm");
 moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
 ```
 
-###价格处理(后面可能上)
+### 价格处理(后面可能上)
 使用big.js进行价格处理
 ```
 0.1 + 0.2                  // 0.30000000000000004
