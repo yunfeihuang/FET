@@ -9,7 +9,7 @@
 
 ## 好的原则
 - 约定优于配置
-- 不要太过于依赖注释，注释只是业务的补充，良好的代码结构和命名能够能够避免很多无用的注释
+- 不要太过于依赖注释，注释只是业务的补充，**良好的代码结构和命名**能够能够避免很多不必要的注释
 - 清晰原则：清晰胜于技巧 （代码是给人看的，其次才是在机器上运行的，10行复杂的代码不如30行清晰的代码）
 - 吝啬原则：除非确无它法,不要编写庞大的程序（动不动就上千行的代码不要再出现了！！！）
 - 健壮原则：健壮源于透明和简洁
@@ -76,7 +76,7 @@ Big(0.7).plus(x).plus(y)   // '1.1'
 ## 编码规范校验
 暂时是主要基于下面两个定制的，后期将独立成单独的包。提交的代码必须要通过`eslint`及`stylelint`的校验。
 
-- React校验[eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)
-- css/scss校验[stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
+- React校验 [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react)
+- css/scss校验 [stylelint-config-standard](https://github.com/stylelint/stylelint-config-standard)
 
 ## Code Review规范（待完善）
