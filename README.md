@@ -41,7 +41,8 @@
 - `reduers`的名字须有该模块的前缀，同actions，小写下划线方式连接。
 - 以上如果太长则使用缩写，如服务时间管理`Service_Mission_Manage`缩写是SMM。
 - `react-route`的path用小写，_连接单词`<Routepath="service_mission_manage">。
-`
+
+> 后台相关的数据或请求采`aaa_abbb`的命名方式，便于区分。就好像后台的数据库相关的也采用小写+下划线命名一样。
 
 > Tips：3是一个很奇妙的数字，目录结构，对象设计，路由层次等，尽量不要超过3层，保证工程的**扁平化**
 
