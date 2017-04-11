@@ -36,9 +36,9 @@
 ### action，store，路由等
 - 路由：和目录结构统一。
 - `store`：目录结构+下划线如`/order/indent`->`order_indent`。
-- `action`的方法名须有该模块的前缀。
+- `action`的方法名须有该模块（目录）的前缀,保证唯一性。后面采恭动词+名词的形式。小写下划线方式连接。用如`/order/indent`下的action,获取订单模板：`order_indent_get_template_list`，
 - `actionType`的常量须有该模块的前缀。
-- `reduers`的名字须有该模块的前缀。
+- `reduers`的名字须有该模块的前缀，同actions，小写下划线方式连接。
 - 以上如果太长则使用缩写，如服务时间管理`Service_Mission_Manage`缩写是SMM。
 - `react-route`的path用小写，_连接单词`<Routepath="service_mission_manage">。
 `
