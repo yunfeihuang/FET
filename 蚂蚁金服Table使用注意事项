@@ -1,0 +1,72 @@
+由于管理端表格组件存在重复渲染的性能问题，综合考虑现有的情况并对表格底层进行性能优化
+
+优化的思路（减少不必要的渲染）：
+  1.在组件shouldComponentUpdate对loading,scroll,selectedRowKeys进行比较是否渲染表格
+  2.还有将loading效果与表格拆分
+
+优化的代码：
+
+class AntdTable extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  shouldComponentUpdate(nextProps) {
+    if(this.props.stopShouldUpdate===true){//阻止默认（以下优化判断）行为
+      return true;
+    }
+    if(Object.keys(this.props).indexOf('loading')===-1){//没有loading则不需要优化判断
+      return true;
+    }
+    if(this.props.loading!==nextProps.loading&&nextProps.loading===false){//loading 不相等且为false时渲染
+      return true;
+    }
+    if(nextProps.loading===true&&!this.props.scroll){//loading为true非this.props.scroll阻止渲染
+      return false;
+    }
+    if(JSON.stringify(this.props.scroll)!==JSON.stringify(nextProps.scroll)){//scroll不相等渲染
+      return true;
+    }
+    if(this.props.rowSelection&&JSON.stringify(this.props.rowSelection.selectedRowKeys)!==JSON.stringify(nextProps.rowSelection.selectedRowKeys)){//selectedRowKeys不相等渲染
+      return true;
+    }
+    return false;
+  }
+  render() {//loading={false}覆盖loading
+    return (
+      <_Table {...this.props} loading={false}/>
+    );
+  }
+}
+/**
+*table和loading分离
+*/
+class Table extends React.Component{
+  constructor(props){
+    super(props);
+  }
+  render() {
+    const spinStyle={
+      position:'absolute',
+      left:'50%',
+      top:'50%',
+      margin:'-10px',
+      zIndex:'10',
+      display:this.props.loading?'block':'none'
+    };
+    let columns = this.props.columns.filter((item)=>{//过滤隐藏列
+      return item.hidden!==true;
+    });
+    return (
+      <div style={{position:'relative'}}>
+        <Spin style={spinStyle}/>
+        <div style={{opacity:this.props.loading?'0.7':'1'}}>
+          <AntdTable {...this.props} columns={columns}/>
+        </div>
+      </div>
+    );
+  }
+}
+
+Table.Origin=_Table;//暴露原有的Table
+
+其他：组合实际业务的需要对columns数组项添加hidden属性的扩展（hidden===true则过滤掉）
